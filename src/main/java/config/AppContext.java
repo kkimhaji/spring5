@@ -20,13 +20,14 @@ public class AppContext {
 
     @Bean
     public MemberRegisterService memberRegisterService(){
-        return new MemberRegisterService(memberDao());
+        return new MemberRegisterService();
     }
 
     @Bean
     public ChangePasswordService changePasswordService(){
         ChangePasswordService passwordService = new ChangePasswordService();
-        passwordService.setMemberDao(memberDao());
+//        passwordService.setMemberDao(memberDao());
+// ChangePasswordService에 @Autowired로 의존성 자동 주입을 해뒀기 때문에 의존을 주입하지 않아도 된다
         return passwordService;
     }
 
@@ -36,14 +37,14 @@ public class AppContext {
     }
     @Bean
     public MemberListPrinter memberListPrinter(){
-        return new MemberListPrinter(memberDao(), memberPrinter());
+        return new MemberListPrinter();
     }
 
     @Bean
     public MemberInfoPrinter infoPrinter(){
         MemberInfoPrinter infoPrinter = new MemberInfoPrinter();
-        infoPrinter.setPrinter(memberPrinter());
-        infoPrinter.setMemberDao(memberDao());
+//        infoPrinter.setPrinter(memberPrinter());
+//        infoPrinter.setMemberDao(memberDao());
         return infoPrinter;
     }
 
